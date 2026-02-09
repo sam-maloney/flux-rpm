@@ -61,11 +61,6 @@ BuildRequires: which
 BuildRequires: file
 BuildRequires: procps-ng
 
-# libtool CCLD of libflux-core.la adds -lsodium -lpgm -lgssapi_krb5
-BuildRequires: libsodium-devel >= 0.4.5
-BuildRequires: openpgm-devel
-BuildRequires: krb5-devel
-
 # rely on autoreq for most dependencies
 Requires: lua >= 5.1
 Requires: lua-posix

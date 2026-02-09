@@ -21,8 +21,6 @@ BuildRequires: pkgconfig(jansson) >= 2.10
 BuildRequires: pkgconfig(sqlite3) >= 3.6.0
 BuildRequires: pkgconfig(systemd)
 BuildRequires: python3-devel >= 3.9
-BuildRequires: python3-cffi
-BuildRequires: python3-pyyaml
 BuildRequires: python3-sphinx >= 1.6.7
 BuildRequires: python3-sphinx_rtd_theme
 BuildRequires: python3-docutils >= 0.11.0

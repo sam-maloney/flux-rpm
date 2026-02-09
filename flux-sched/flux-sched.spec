@@ -37,10 +37,8 @@ BuildRequires: gcc-c++
 %if 0%{?rhel} == 9
 BuildRequires: gcc-toolset-13-gcc-c++
 %endif
-BuildRequires: pkgconfig(libzmq) >= 4.1.4
 BuildRequires: pkgconfig(jansson) >= 2.10
 BuildRequires: pkgconfig(hwloc) >= 2
-BuildRequires: pkgconfig(libxml-2.0) >= 2.9
 BuildRequires: pkgconfig(yaml-cpp) >= 0.5.1
 BuildRequires: pkgconfig(libedit) >= 3.0
 BuildRequires: pkgconfig(uuid)
@@ -52,11 +50,7 @@ BuildRequires: python3-devel >= 3.6
 BuildRequires: python3-pyyaml >= %{pyyaml_minver}
 BuildRequires: python3-sphinx
 BuildRequires: python3-sphinx_rtd_theme
-BuildRequires: python3-docutils
 BuildRequires: python3-jsonschema >= 2.3.0
-
-# Should be pulled in by flux-core, but isn't
-BuildRequires: python3-cffi
 
 # Required for 'make check'
 BuildRequires: aspell
