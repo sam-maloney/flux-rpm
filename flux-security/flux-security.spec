@@ -17,6 +17,7 @@ BuildRequires: pkgconfig(jansson) >= 2.10
 BuildRequires: pkgconfig(munge)
 BuildRequires: pkgconfig(uuid)
 BuildRequires: pam-devel
+BuildRequires: python3-devel
 BuildRequires: python3-sphinx >= 1.6.7
 BuildRequires: python3-sphinx_rtd_theme
 BuildRequires: python3-docutils >= 0.11.0

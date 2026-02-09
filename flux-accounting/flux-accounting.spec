@@ -19,7 +19,6 @@ Patch0:  py-compile-python312.patch
 
 BuildRequires: pkgconfig(jansson) >= 2.10
 BuildRequires: pkgconfig(sqlite3) >= 3.6.0
-BuildRequires: python3
 BuildRequires: pkgconfig(systemd)
 BuildRequires: python3-devel >= 3.9
 BuildRequires: python3-cffi
@@ -44,7 +43,6 @@ BuildRequires: glibc-langpack-en
 
 Requires: flux-core >= %{flux_core_minver}
 Requires: sqlite >= 3.6.0
-Requires: python3
 Requires: python3-cffi
 Requires: python3-pyyaml
 

@@ -71,12 +71,10 @@ Requires: lua >= 5.1
 Requires: lua-posix
 Requires: sqlite >= 3.6.0
 Requires: ncurses
-Requires: python3
 Requires: python3-cffi >= %{cffi_minver}
 Requires: python3-pyyaml >= %{pyyaml_minver}
 Requires: python3-ply >= %{ply_minver}
 
-BuildRequires: python3
 BuildRequires: python3-devel >= 3.6
 BuildRequires: python3-cffi >= %{cffi_minver}
 BuildRequires: python3-pyyaml >= %{pyyaml_minver}

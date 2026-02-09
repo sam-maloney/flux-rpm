@@ -48,6 +48,7 @@ BuildRequires: pkgconfig(uuid)
 BuildRequires: boost-devel >= %{boost_minver}
 BuildRequires: boost-graph >= %{boost_minver}
 
+BuildRequires: python3-devel >= 3.6
 BuildRequires: python3-pyyaml >= %{pyyaml_minver}
 BuildRequires: python3-sphinx
 BuildRequires: python3-sphinx_rtd_theme
@@ -56,12 +57,6 @@ BuildRequires: python3-jsonschema >= 2.3.0
 
 # Should be pulled in by flux-core, but isn't
 BuildRequires: python3-cffi
-
-# Should be pulled in by flux-core
-BuildRequires: python3 >= 3.6
-
-# Required only by configure?
-BuildRequires: python3-devel
 
 # Required for 'make check'
 BuildRequires: aspell
