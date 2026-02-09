@@ -27,6 +27,7 @@ Patch1:  cmake-install-libdir-fix.patch
 ExcludeArch: ppc64le
 
 %global flux_core_minver 0.75.0
+%global pyyaml_minver    3.10
 
 BuildRequires: pkgconfig(flux-core) >= %{flux_core_minver}
 BuildRequires: cmake >= 3.18
@@ -47,7 +48,7 @@ BuildRequires: boost >= 1.66.0
 BuildRequires: boost-devel
 BuildRequires: boost-graph
 
-BuildRequires: python3-pyyaml >= 3.10
+BuildRequires: python3-pyyaml >= %{pyyaml_minver}
 BuildRequires: python3-sphinx
 BuildRequires: python3-sphinx_rtd_theme
 BuildRequires: python3-docutils
@@ -79,6 +80,7 @@ BuildRequires: gdb
 BuildRequires: glibc-langpack-en
 
 Requires: flux-core >= %{flux_core_minver}
+Requires: python3-pyyaml >= %{pyyaml_minver}
 
 %description
 flux-sched contains the Fluxion graph-based scheduler for the Flux
