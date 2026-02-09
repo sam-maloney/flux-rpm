@@ -40,9 +40,6 @@ BuildRequires: systemd-rpm-macros
 BuildRequires: glibc-langpack-en
 
 Requires: flux-core >= %{flux_core_minver}
-Requires: sqlite >= 3.6.0
-Requires: python3-cffi
-Requires: python3-pyyaml
 
 %description
 Flux Framework is a suite of projects, tools and libraries which may

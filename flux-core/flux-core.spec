@@ -62,10 +62,7 @@ BuildRequires: file
 BuildRequires: procps-ng
 
 # rely on autoreq for most dependencies
-Requires: lua >= 5.1
 Requires: lua-posix
-Requires: sqlite >= 3.6.0
-Requires: ncurses
 Requires: python3-cffi >= %{cffi_minver}
 Requires: python3-pyyaml >= %{pyyaml_minver}
 Requires: python3-ply >= %{ply_minver}
