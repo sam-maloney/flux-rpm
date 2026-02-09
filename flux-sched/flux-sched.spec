@@ -26,30 +26,32 @@ Patch1:  cmake-install-libdir-fix.patch
 
 ExcludeArch: ppc64le
 
-BuildRequires: cmake
-BuildRequires: pkgconfig(flux-core) >= 0.75.0
+%global flux_core_minver 0.75.0
+
+BuildRequires: pkgconfig(flux-core) >= %{flux_core_minver}
+BuildRequires: cmake >= 3.18
 BuildRequires: gcc-c++
 # flux-sched requires GCC 12+ for C++20 features
 %if 0%{?rhel} == 9
 BuildRequires: gcc-toolset-13-gcc-c++
 %endif
 BuildRequires: pkgconfig(libzmq) >= 4.1.4
-BuildRequires: pkgconfig(jansson) >= 2.6
-BuildRequires: pkgconfig(hwloc) >= 2.1
+BuildRequires: pkgconfig(jansson) >= 2.10
+BuildRequires: pkgconfig(hwloc) >= 2
 BuildRequires: pkgconfig(libxml-2.0) >= 2.9
 BuildRequires: pkgconfig(yaml-cpp) >= 0.5.1
-BuildRequires: pkgconfig(libedit)
+BuildRequires: pkgconfig(libedit) >= 3.0
 BuildRequires: pkgconfig(uuid)
 
-BuildRequires: boost >= 1.53.0
+BuildRequires: boost >= 1.66.0
 BuildRequires: boost-devel
 BuildRequires: boost-graph
 
-BuildRequires: python3-pyyaml
+BuildRequires: python3-pyyaml >= 3.10
 BuildRequires: python3-sphinx
 BuildRequires: python3-sphinx_rtd_theme
 BuildRequires: python3-docutils
-BuildRequires: python3-jsonschema
+BuildRequires: python3-jsonschema >= 2.3.0
 
 # Should be pulled in by flux-core, but isn't
 BuildRequires: python3-cffi
@@ -76,7 +78,7 @@ BuildRequires: gdb
 # Required for en_US.UTF-8 locale during build
 BuildRequires: glibc-langpack-en
 
-Requires: flux-core >= 0.75.0
+Requires: flux-core >= %{flux_core_minver}
 
 %description
 flux-sched contains the Fluxion graph-based scheduler for the Flux

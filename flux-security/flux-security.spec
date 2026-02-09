@@ -13,13 +13,13 @@ Source0: %{url}/releases/download/v%{version}/%{name}-%{version}.tar.gz
 Patch0:  211.patch
 
 BuildRequires: pkgconfig(libsodium) >= 1.0.14
-BuildRequires: pkgconfig(jansson) >= 2.6
+BuildRequires: pkgconfig(jansson) >= 2.10
 BuildRequires: pkgconfig(munge)
 BuildRequires: pkgconfig(uuid)
 BuildRequires: pam-devel
-BuildRequires: python3-sphinx
+BuildRequires: python3-sphinx >= 1.6.7
 BuildRequires: python3-sphinx_rtd_theme
-BuildRequires: python3-docutils
+BuildRequires: python3-docutils >= 0.11.0
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: libtool

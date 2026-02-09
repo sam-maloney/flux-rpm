@@ -15,17 +15,19 @@ Patch0:  py-compile-python312.patch
 # this, brp-mangle-shebangs strips the executable bit we set, breaking `flux account`.
 %global __brp_mangle_shebangs_exclude_from ^%{_libexecdir}/flux/
 
+%global flux_core_minver 0.81.0
+
 BuildRequires: pkgconfig(jansson) >= 2.10
-BuildRequires: pkgconfig(sqlite3)
+BuildRequires: pkgconfig(sqlite3) >= 3.6.0
 BuildRequires: python3
 BuildRequires: pkgconfig(systemd)
-BuildRequires: python3-devel
+BuildRequires: python3-devel >= 3.9
 BuildRequires: python3-cffi
 BuildRequires: python3-pyyaml
-BuildRequires: python3-sphinx
+BuildRequires: python3-sphinx >= 1.6.7
 BuildRequires: python3-sphinx_rtd_theme
-BuildRequires: python3-docutils
-BuildRequires: pkgconfig(flux-core)
+BuildRequires: python3-docutils >= 0.11.0
+BuildRequires: pkgconfig(flux-core) >= %{flux_core_minver}
 
 BuildRequires: autoconf
 BuildRequires: automake
@@ -40,7 +42,7 @@ BuildRequires: systemd-rpm-macros
 # Required for en_US.UTF-8 locale during documentation build
 BuildRequires: glibc-langpack-en
 
-Requires: flux-core
+Requires: flux-core >= %{flux_core_minver}
 Requires: sqlite >= 3.6.0
 Requires: python3
 Requires: python3-cffi

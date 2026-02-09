@@ -22,11 +22,15 @@ Source0: %{url}/releases/download/v%{version}/%{name}-%{version}.tar.gz
 # this, brp-mangle-shebangs strips the executable bit we set, breaking `flux modprobe`.
 %global __brp_mangle_shebangs_exclude_from ^%{_libexecdir}/flux/
 
+%global cffi_minver        1.1
+%global ply_minver         3.9
+%global pyyaml_minver      3.10
 
 BuildRequires: pkgconfig(flux-security) >= 0.14
-BuildRequires: pkgconfig(libzmq) >= 4.1.4
-BuildRequires: pkgconfig(jansson) >= 2.6
-BuildRequires: pkgconfig(hwloc) >= 2.1
+
+BuildRequires: pkgconfig(libzmq) >= 4.0.4
+BuildRequires: pkgconfig(jansson) >= 2.9
+BuildRequires: pkgconfig(hwloc) >= 1.11.1
 BuildRequires: pkgconfig(sqlite3) >= 3.6.0
 BuildRequires: pkgconfig(bash-completion)
 BuildRequires: pkgconfig(liblz4)
@@ -34,7 +38,7 @@ BuildRequires: pkgconfig(uuid)
 BuildRequires: pkgconfig(ncurses)
 BuildRequires: pkgconfig(libarchive)
 BuildRequires: pkgconfig(systemd)
-BuildRequires: lua-devel >= 5.1
+BuildRequires: (lua-devel >= 5.1 and lua-devel < 5.5)
 BuildRequires: munge-devel
 BuildRequires: lua-posix
 
@@ -64,23 +68,23 @@ BuildRequires: krb5-devel
 
 # rely on autoreq for most dependencies
 Requires: lua >= 5.1
-Requires: lua-posix >= 5.1
+Requires: lua-posix
 Requires: sqlite >= 3.6.0
 Requires: ncurses
 Requires: python3
-Requires: python3-cffi
-Requires: python3-pyyaml
-Requires: python3-ply
+Requires: python3-cffi >= %{cffi_minver}
+Requires: python3-pyyaml >= %{pyyaml_minver}
+Requires: python3-ply >= %{ply_minver}
 
 BuildRequires: python3
-BuildRequires: python3-devel
-BuildRequires: python3-cffi
-BuildRequires: python3-pyyaml
-BuildRequires: python3-ply
+BuildRequires: python3-devel >= 3.6
+BuildRequires: python3-cffi >= %{cffi_minver}
+BuildRequires: python3-pyyaml >= %{pyyaml_minver}
+BuildRequires: python3-ply >= %{ply_minver}
 BuildRequires: python3-setuptools
-BuildRequires: python3-sphinx
+BuildRequires: python3-sphinx >= 1.6.7
 BuildRequires: python3-sphinx_rtd_theme
-BuildRequires: python3-docutils
+BuildRequires: python3-docutils >= 0.11.0
 
 BuildRequires: autoconf
 BuildRequires: automake
