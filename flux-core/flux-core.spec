@@ -22,21 +22,21 @@ Source0: %{url}/releases/download/v%{version}/%{name}-%{version}.tar.gz
 # this, brp-mangle-shebangs strips the executable bit we set, breaking `flux modprobe`.
 %global __brp_mangle_shebangs_exclude_from ^%{_libexecdir}/flux/
 
-BuildRequires: flux-security-devel >= 0.14
 
+BuildRequires: pkgconfig(flux-security) >= 0.14
 BuildRequires: pkgconfig(libzmq) >= 4.1.4
 BuildRequires: pkgconfig(jansson) >= 2.6
 BuildRequires: pkgconfig(hwloc) >= 2.1
 BuildRequires: pkgconfig(sqlite3) >= 3.6.0
 BuildRequires: pkgconfig(bash-completion)
+BuildRequires: pkgconfig(liblz4)
+BuildRequires: pkgconfig(uuid)
+BuildRequires: pkgconfig(ncurses)
+BuildRequires: pkgconfig(libarchive)
+BuildRequires: pkgconfig(systemd)
 BuildRequires: lua-devel >= 5.1
-BuildRequires: lz4-devel
 BuildRequires: munge-devel
 BuildRequires: lua-posix
-BuildRequires: libuuid-devel
-BuildRequires: ncurses-devel
-BuildRequires: libarchive-devel
-BuildRequires: systemd-devel
 
 # for _tmpfilesdir
 BuildRequires: systemd-rpm-macros

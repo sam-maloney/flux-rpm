@@ -18,14 +18,14 @@ Patch0:  py-compile-python312.patch
 BuildRequires: pkgconfig(jansson) >= 2.10
 BuildRequires: pkgconfig(sqlite3)
 BuildRequires: python3
+BuildRequires: pkgconfig(systemd)
 BuildRequires: python3-devel
 BuildRequires: python3-cffi
 BuildRequires: python3-pyyaml
 BuildRequires: python3-sphinx
 BuildRequires: python3-sphinx_rtd_theme
 BuildRequires: python3-docutils
-BuildRequires: flux-core
-BuildRequires: flux-core-devel
+BuildRequires: pkgconfig(flux-core)
 
 BuildRequires: autoconf
 BuildRequires: automake

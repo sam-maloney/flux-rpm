@@ -14,9 +14,9 @@ Patch0:  211.patch
 
 BuildRequires: pkgconfig(libsodium) >= 1.0.14
 BuildRequires: pkgconfig(jansson) >= 2.6
-BuildRequires: munge-devel
+BuildRequires: pkgconfig(munge)
+BuildRequires: pkgconfig(uuid)
 BuildRequires: pam-devel
-BuildRequires: libuuid-devel
 BuildRequires: python3-sphinx
 BuildRequires: python3-sphinx_rtd_theme
 BuildRequires: python3-docutils

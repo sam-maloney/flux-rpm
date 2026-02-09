@@ -26,8 +26,8 @@ Patch1:  cmake-install-libdir-fix.patch
 
 ExcludeArch: ppc64le
 
-BuildRequires: flux-core-devel >= 0.75.0
 BuildRequires: cmake
+BuildRequires: pkgconfig(flux-core) >= 0.75.0
 BuildRequires: gcc-c++
 # flux-sched requires GCC 12+ for C++20 features
 %if 0%{?rhel} == 9
@@ -37,9 +37,9 @@ BuildRequires: pkgconfig(libzmq) >= 4.1.4
 BuildRequires: pkgconfig(jansson) >= 2.6
 BuildRequires: pkgconfig(hwloc) >= 2.1
 BuildRequires: pkgconfig(libxml-2.0) >= 2.9
-BuildRequires: yaml-cpp-devel >= 0.5.1
-BuildRequires: libedit-devel
-BuildRequires: libuuid-devel
+BuildRequires: pkgconfig(yaml-cpp) >= 0.5.1
+BuildRequires: pkgconfig(libedit)
+BuildRequires: pkgconfig(uuid)
 
 BuildRequires: boost >= 1.53.0
 BuildRequires: boost-devel
