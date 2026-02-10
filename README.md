@@ -103,7 +103,6 @@ This repository uses **COPR's native SCM integration** to automatically build pa
 - **flux-sched**: https://copr.fedorainfracloud.org/coprs/kushgupta/flux-sched/
 - **flux-accounting**: https://copr.fedorainfracloud.org/coprs/kushgupta/flux-accounting/
 
-```
 ## License
 
 Same as Flux Framework: LGPL-3.0
