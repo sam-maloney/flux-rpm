@@ -18,7 +18,7 @@ Heavily assisted through Cursor IDE with Claude 4.5 Opus, but all code is review
 ## Build Status
 
 Testing against:
-- **Fedora**: 41, 42, Rawhide (COPR)
+- **Fedora**: 41, 42, Rawhide
 - **EPEL**: 9, 10 (CentOS Stream)
 
 ## Quick Start
@@ -27,19 +27,19 @@ Testing against:
 
 ```bash
 # Install flux-security first (dependency)
-sudo dnf copr enable Kushgupta/flux-security
+sudo dnf copr enable kushgupta/flux-security
 sudo dnf install flux-security flux-security-devel
 
 # Then install flux-core
-sudo dnf copr enable Kushgupta/flux-core
+sudo dnf copr enable kushgupta/flux-core
 sudo dnf install flux-core
 
 # Finally install flux-sched (Fluxion scheduler)
-sudo dnf copr enable Kushgupta/flux-sched
+sudo dnf copr enable kushgupta/flux-sched
 sudo dnf install flux-sched
 
 # Optional: install flux-accounting (bank/accounting)
-sudo dnf copr enable Kushgupta/flux-accounting
+sudo dnf copr enable kushgupta/flux-accounting
 sudo dnf install flux-accounting
 ```
 
@@ -68,25 +68,7 @@ This repository includes automated version checking via GitHub Actions:
 
 - **Daily checks** for new upstream releases
 - **Automatic PR creation** when new versions are available
-- **Spec file extraction** from upstream SRPMs with Fedora adaptations applied
-
-### Manual Update
-
-```bash
-# Update to latest versions
-./scripts/update-specs.sh all
-
-# Update specific package
-./scripts/update-specs.sh flux-core
-
-# Update to specific version
-./scripts/update-specs.sh -v v0.82.0 flux-core
-```
-
-The update script:
-1. Downloads the SRPM from the upstream release
-2. Extracts the spec file
-3. Applies Fedora-required modifications (SPDX license, macros, etc.)
+- **Spec file extraction** from upstream SRPMs with some of the Fedora adaptations applied
 
 ## Repository Structure
 
@@ -112,7 +94,7 @@ flux-rpm/
 
 ## COPR Setup
 
-This repository uses **COPR's native SCM integration** to automatically build packages directly from GitHub - no GitHub Actions or API tokens needed!
+This repository uses **COPR's native SCM integration** to automatically build packages directly from GitHub.
 
 ### Projects
 
@@ -121,35 +103,6 @@ This repository uses **COPR's native SCM integration** to automatically build pa
 - **flux-sched**: https://copr.fedorainfracloud.org/coprs/kushgupta/flux-sched/
 - **flux-accounting**: https://copr.fedorainfracloud.org/coprs/kushgupta/flux-accounting/
 
-### How It Works
-
-1. COPR pulls directly from this GitHub repository
-2. The `.copr/Makefile` downloads upstream tarballs and builds SRPMs
-3. COPR builds RPMs for all configured chroots
-4. Packages with "auto-rebuild" enabled will rebuild on git push
-
-### Triggering Builds
-
-**Automatic** (if auto-rebuild is enabled):
-- Push to `main` branch triggers automatic rebuild
-
-**Manual**:
-1. Go to the COPR project → Packages
-2. Click "Rebuild" next to the package
-
-### Manual COPR Build (Alternative)
-
-You can also manually upload SRPMs:
-
-```bash
-# Build SRPMs locally
-./scripts/build-srpm.sh all
-
-# Upload to COPR
-copr-cli build kushgupta/flux-security ~/rpmbuild/SRPMS/flux-security-*.src.rpm
-copr-cli build kushgupta/flux-core ~/rpmbuild/SRPMS/flux-core-*.src.rpm
-copr-cli build kushgupta/flux-sched ~/rpmbuild/SRPMS/flux-sched-*.src.rpm
-copr-cli build kushgupta/flux-accounting ~/rpmbuild/SRPMS/flux-accounting-*.src.rpm
 ```
 ## License
 
