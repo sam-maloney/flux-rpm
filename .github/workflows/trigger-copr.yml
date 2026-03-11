@@ -1,0 +1,91 @@
+name: Trigger COPR Builds
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'flux-*/*.spec'
+      - 'flux-*/sources'
+      - 'flux-*/*.patch'
+      - '.copr/**'
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: 'Space-separated list of packages to rebuild (e.g. "flux-core flux-sched"), or "all"'
+        required: false
+        default: 'all'
+
+jobs:
+  trigger:
+    name: Trigger COPR builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+
+      - name: Validate COPR secrets
+        run: |
+          if [ -z "${{ secrets.COPR_LOGIN }}" ] || [ -z "${{ secrets.COPR_TOKEN }}" ]; then
+            echo "::error::COPR_LOGIN and COPR_TOKEN secrets must be configured. See https://copr.fedorainfracloud.org/api/"
+            exit 1
+          fi
+
+      - name: Install copr-cli
+        run: pip install copr-cli
+
+      - name: Configure copr-cli
+        run: |
+          mkdir -p ~/.config
+          cat > ~/.config/copr <<EOF
+          [copr-cli]
+          login = ${{ secrets.COPR_LOGIN }}
+          username = kushgupta
+          token = ${{ secrets.COPR_TOKEN }}
+          copr_url = https://copr.fedorainfracloud.org
+          EOF
+
+      - name: Detect changed packages
+        id: detect
+        run: |
+          ALL_PKGS="flux-security flux-core flux-sched flux-accounting"
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            INPUT="${{ github.event.inputs.packages }}"
+            if [ "$INPUT" = "all" ] || [ -z "$INPUT" ]; then
+              PKGS="$ALL_PKGS"
+            else
+              PKGS="$INPUT"
+            fi
+          else
+            if ! git rev-parse HEAD~1 >/dev/null 2>&1; then
+              echo "No parent commit available; rebuilding all packages"
+              PKGS="$ALL_PKGS"
+            elif git diff --name-only HEAD~1 HEAD -- '.copr/' | grep -q .; then
+              PKGS="$ALL_PKGS"
+            else
+              PKGS=$(git diff --name-only HEAD~1 HEAD -- 'flux-*/' | \
+                grep -oP '^flux-[^/]+' | sort -u | tr '\n' ' ')
+            fi
+          fi
+
+          echo "packages=$PKGS" >> "$GITHUB_OUTPUT"
+          echo "Will trigger builds for: $PKGS"
+
+      - name: Trigger COPR builds
+        if: steps.detect.outputs.packages != ''
+        run: |
+          FAILED=0
+          for pkg in ${{ steps.detect.outputs.packages }}; do
+            echo "::group::Triggering $pkg"
+            if copr-cli build-package --name "$pkg" "kushgupta/$pkg"; then
+              echo "Triggered $pkg build successfully"
+            else
+              echo "::warning::Failed to trigger $pkg build"
+              FAILED=1
+            fi
+            echo "::endgroup::"
+          done
+          if [ "$FAILED" -ne 0 ]; then
+            echo "::warning::Some COPR builds failed to trigger. Check warnings above."
+          fi
