@@ -9,6 +9,9 @@ Source0: %{url}/releases/download/v%{version}/%{name}-%{version}.tar.gz
 # Redhat only provides /usr/bin/false, but tests look for /bin/false
 %global __requires_exclude /bin/false
 
+# LTO causes a bunch of tests to fail so it should not be used
+%global _lto_cflags %{nil}
+
 # Disable strict-aliasing optimizations - upstream uses bundled libev which has
 # known strict-aliasing violations. Upstream already uses -Wno-strict-aliasing
 # in their build but Fedora's optflags adds -O2 which enables -fstrict-aliasing.
@@ -278,7 +281,7 @@ fi
 
 %changelog
 * Fri Mar 13 2026 Sam Maloney <s.maloney@fz-juelich.de> - 0.83.1-2
-- Disable strict-aliasing optimizations
+- Disable LTO and strict-aliasing optimizations
 
 * Wed Mar 11 2026 Kush Gupta <kugupta@redhat.com> - 0.83.1-1
 - Update to v0.83.1
