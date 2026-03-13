@@ -1,6 +1,6 @@
 Name:    flux-core
 Version: 0.83.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Flux Resource Manager Framework
 License: LGPL-3.0-only
 URL:     https://github.com/flux-framework/flux-core
@@ -9,10 +9,10 @@ Source0: %{url}/releases/download/v%{version}/%{name}-%{version}.tar.gz
 # Redhat only provides /usr/bin/false, but tests look for /bin/false
 %global __requires_exclude /bin/false
 
-# Disable strict-aliasing errors - upstream uses bundled libev which has
+# Disable strict-aliasing optimizations - upstream uses bundled libev which has
 # known strict-aliasing violations. Upstream already uses -Wno-strict-aliasing
-# in their build but Fedora's optflags may override this with -Werror variants.
-%global optflags %{optflags} -Wno-error=strict-aliasing
+# in their build but Fedora's optflags adds -O2 which enables -fstrict-aliasing.
+%global build_cflags %{build_cflags} -fno-strict-aliasing
 
 # Exclude flux Python subcommands from shebang mangling - these files are run
 # through the `flux python` wrapper and don't have shebangs by design. Without
@@ -277,6 +277,9 @@ fi
 %{_mandir}/man3/*.3*
 
 %changelog
+* Fri Mar 13 2026 Sam Maloney <s.maloney@fz-juelich.de> - 0.83.1-2
+- Disable strict-aliasing optimizations
+
 * Wed Mar 11 2026 Kush Gupta <kugupta@redhat.com> - 0.83.1-1
 - Update to v0.83.1
 - NO_COLOR support, Python userid/rolemask getters, module loader helpers
