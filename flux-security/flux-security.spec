@@ -1,6 +1,6 @@
 Name:    flux-security
 Version: 0.14.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 Summary: Flux Framework Security Components
 License: LGPL-3.0-only
@@ -110,6 +110,9 @@ mkdir -p %{buildroot}%{_sysconfdir}/flux/imp/conf.d
 %{_mandir}/man3/*.3*
 
 %changelog
+* Fri Mar 13 2026 Sam Maloney <s.maloney@fz-juelich.de> - 0.14.0-3
+- Clean up requirements and dependency versions
+
 * Tue Jan  6 2026 Kush Gupta <kugupta@redhat.com> - 0.14.0-2
 - Add patch based on PR #211 to fix GCC 16 build failure on Fedora Rawhide
 - Includes fix for missing const in payload_decode_cpy (potentially incomplete in upstream PR)

@@ -1,6 +1,6 @@
 Name:    flux-sched
 Version: 0.49.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Job Scheduling Facility for Flux Resource Manager Framework
 License: LGPL-3.0-only
 URL:     https://github.com/flux-framework/flux-sched
@@ -150,6 +150,9 @@ find %{buildroot}%{_libexecdir}/flux/cmd -name '*.py' -exec chmod 755 {} \;
 %{_mandir}/man5/*
 
 %changelog
+* Fri Mar 13 2026 Sam Maloney <s.maloney@fz-juelich.de> - 0.49.0-2
+- Clean up requirements and dependency versions
+
 * Wed Feb 11 2026 Kush Gupta <kugupta@redhat.com> - 0.49.0-1
 - Update to v0.49.0
 - Add patch to fix CMake install LIBDIR on Fedora Rawhide (CMake 4.0+)

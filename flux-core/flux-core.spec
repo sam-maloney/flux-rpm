@@ -1,6 +1,6 @@
 Name:    flux-core
 Version: 0.83.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Flux Resource Manager Framework
 License: LGPL-3.0-only
 URL:     https://github.com/flux-framework/flux-core
@@ -274,6 +274,9 @@ fi
 %{_mandir}/man3/*.3*
 
 %changelog
+* Fri Mar 13 2026 Sam Maloney <s.maloney@fz-juelich.de> - 0.83.1-3
+- Clean up requirements and dependency versions
+
 * Fri Mar 13 2026 Sam Maloney <s.maloney@fz-juelich.de> - 0.83.1-2
 - Disable LTO and strict-aliasing optimizations
 

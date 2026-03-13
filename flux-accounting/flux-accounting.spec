@@ -1,6 +1,6 @@
 Name:    flux-accounting
 Version: 0.56.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Bank/Accounting Interface for the Flux Resource Manager
 License: LGPL-3.0-only
 URL:     https://github.com/flux-framework/flux-accounting
@@ -98,8 +98,8 @@ find %{buildroot}%{_libexecdir}/flux/cmd -name '*.py' -exec chmod 755 {} \;
 %systemd_postun_with_restart flux-accounting.service
 
 %files
-%license DISCLAIMER.LLNS
-%doc README.md NEWS
+%license LICENSE
+%doc README.md NEWS.md
 
 # Python fluxacct package (uses sitearch due to native extensions)
 %{python3_sitearch}/fluxacct
@@ -129,6 +129,10 @@ find %{buildroot}%{_libexecdir}/flux/cmd -name '*.py' -exec chmod 755 {} \;
 %{_mandir}/man1/*.1*
 
 %changelog
+* Fri Mar 13 2026 Sam Maloney <s.maloney@fz-juelich.de> - 0.56.0-2
+- Clean up requirements and dependency versions
+- Package new changelog (NEWS.md) and LICENSE files
+
 * Wed Mar 11 2026 Kush Gupta <kugupta@redhat.com> - 0.56.0-1
 - Update to v0.56.0
 - New clear-usage command, decay factor fix, minor plugin improvements
